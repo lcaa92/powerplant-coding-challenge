@@ -1,13 +1,27 @@
-from typing import Union
 from decimal import Decimal
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
+
+class FuelModel(BaseModel):
+    gas: Decimal = Field(alias="gas(euro/MWh)")
+    kerosine: Decimal = Field(alias="kerosine(euro/MWh)")
+    co2: Decimal = Field(alias="co2(euro/ton)")
+    wind: Decimal = Field(alias="wind(%)")
+
+
+class PowerplantsModel(BaseModel):
+    name: str
+    type: str
+    efficiency: Decimal = Field(le=1, gt=0)
+    pmin: Decimal
+    pmax: Decimal
 
 
 class Payload(BaseModel):
     load: int
-    fuels: object
-    powerplants: object
+    fuels: FuelModel
+    powerplants: list[PowerplantsModel]
 
 
 class Response(BaseModel):
@@ -21,11 +35,6 @@ app = FastAPI()
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
 
 
 @app.post("/productionplan")
