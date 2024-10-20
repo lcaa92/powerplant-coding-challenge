@@ -4,7 +4,7 @@
 
 # Requirements
 
-To run the app, it is necessary to install dependencies:
+Before running the app, it is necessary to install dependencies:
 
 ```
 python -m pip install -r requirements.txt
@@ -16,7 +16,9 @@ Plus: for dev packages, it is necessary to install dev packages
 python -m pip install -r requirements_dev.txt
 ```
 
-# How to run
+# Running the app
+
+After install the requirements, run the app with one of the following commands:
 
 Fast API DEV mode
 ```
