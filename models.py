@@ -16,6 +16,11 @@ class PowerplantsModel(BaseModel):
     pmin: Decimal
     pmax: Decimal
 
+    def get_cost_eficiency(self, price):
+        if self.type == 'windturbine':
+            return 0
+        return price / self.efficiency
+
 
 class Payload(BaseModel):
     load: int
