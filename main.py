@@ -2,6 +2,8 @@
 from fastapi import FastAPI
 from models import Payload, Response
 from power_calculator import PowerCalculator
+import uvicorn
+
 
 app = FastAPI()
 
@@ -21,3 +23,7 @@ def productionplan(payload: Payload) -> list[Response]:
         powerplants=payload.powerplants
     )
     return service.get_powerplants_power()
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8888)
