@@ -1,6 +1,7 @@
 
 from fastapi import FastAPI
 from models import Payload, Response
+from power_calculator import PowerCalculator
 
 app = FastAPI()
 
@@ -13,4 +14,10 @@ def read_root():
 @app.post("/productionplan")
 def productionplan(payload: Payload) -> list[Response]:
     print(payload)
-    return [{"name": "windpark1", "p": 90.0}, {"name": "windpark2", "p": 21.6}]
+
+    service = PowerCalculator(
+        load=payload.load,
+        fuels=payload.fuels,
+        powerplants=payload.powerplants
+    )
+    return service.get_powerplants_power()
