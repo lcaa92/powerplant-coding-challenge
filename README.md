@@ -47,3 +47,7 @@ Run image
 ```
 docker container run -p 8888:8888 powerplant:latest
 ```
+
+# Makefile
+
+This repository contains a Makefile to help it with some commands

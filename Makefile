@@ -8,11 +8,17 @@ install_requirements: # Installl packages requirements for run main code
 install_requirements_dev: # Installl packages requirements for dev/test and linter
 	python -m pip install -r requirements_dev.txt
 
-linter:
+linter: # Flake8 checks
 	flake8 .
 
-run_dev:
+run_dev: # Run fastapi app in development mode
 	fastapi dev main.py --port 8888
 
-run:
+run: # Run fastapi app in production mode
 	fastapi run main.py --port 8888
+
+build_image: # Build docker image
+	docker build -t powerplant:latest .
+
+run_image: # Run fastapi using docker image
+	docker container run -p 8888:8888 powerplant:latest
