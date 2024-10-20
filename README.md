@@ -35,6 +35,10 @@ Starting app manually
 python main.py
 ```
 
+# Interactive API docs
+
+Accessing the path `/docs` (ex `http://localhost:8888/docs`) it is possible to access the interactive API docs
+
 # Docker image
 
 It is possible to execute app using Docker.
