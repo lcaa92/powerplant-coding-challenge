@@ -15,8 +15,6 @@ def read_root():
 
 @app.post("/productionplan")
 def productionplan(payload: Payload) -> list[Response]:
-    print(payload)
-
     service = PowerCalculator(
         load=payload.load,
         fuels=payload.fuels,
