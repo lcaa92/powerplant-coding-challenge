@@ -32,3 +32,18 @@ Starting app manually
 ```
 python main.py
 ```
+
+# Docker image
+
+It is possible to execute app using Docker.
+
+Build image:
+
+```
+docker build -t powerplant:latest .
+```
+
+Run image
+```
+docker container run -p 8888:8888 powerplant:latest
+```
